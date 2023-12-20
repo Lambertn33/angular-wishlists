@@ -5,6 +5,13 @@
   <div class="row">
     <div class="col-md-4 offset-md-4">
       <div class="mb-3">
+        <select class="form-select" name="filter" [(ngModel)]="selectedFilter">
+          <option value="1">All</option>
+          <option value="2">Completed</option>
+          <option value="3">Uncompleted</option>
+        </select>
+      </div>
+      <div class="mb-3">
         <label for="newWishlist" class="form-label">Wishlist</label>
         <input
           [(ngModel)]="newWishlist.text"
@@ -14,14 +21,14 @@
           id="newWishlist"
         />
         <br>
-        <button (click)="$event.preventDefault(); addNewWish()" class="btn btn-primary">Submit</button>
       </div>
+      <button (click)="$event.preventDefault(); addNewWish()" class="btn btn-primary">Submit</button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <ul class="list-group" *ngIf="wishlists.length; else emptyList">
-        <li class="list-group-item" *ngFor="let wishlist of wishlists">
+        <li class="list-group-item" *ngFor="let wishlist of visibleWishlists">
           <div class="form-check">
             <input
               class="form-check-input"

@@ -18,7 +18,24 @@ export class AppComponent {
     text: '',
   };
 
-  wishlists: Array<Wishlist> = [];
+  selectedFilter = '1';
+
+  wishlists: Array<Wishlist> = [
+    new Wishlist(1, 'Learn Angular', false),
+    new Wishlist(2, 'Learn React', true),
+    new Wishlist(3, 'Learn Vue', true),
+  ];
+
+  get visibleWishlists(): Wishlist[] {
+    let value = this.selectedFilter;
+    if (value == '1') {
+      return  this.wishlists;
+    } else if (value == '2') {
+      return  this.wishlists.filter(wishlist => wishlist.isCompleted);
+    } else {
+      return  this.wishlists.filter(wishlist => !wishlist.isCompleted);
+    }
+  }
 
   toggleWishlist(wishlist: Wishlist) {
     wishlist.isCompleted = !wishlist.isCompleted;
