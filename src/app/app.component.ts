@@ -4,21 +4,19 @@ import { RouterOutlet } from '@angular/router';
 import { Wishlist } from '../models/Wishlist';
 import { FormsModule } from '@angular/forms';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { AddWishComponent } from './add-wish/add-wish.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule, WishListComponent],
+  imports: [CommonModule, RouterOutlet, FormsModule, WishListComponent, AddWishComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'wishlists-app';
 
-  newWishlist = {
-    text: '',
-  };
-
+  
   selectedFilter = '1';
 
   wishlists: Array<Wishlist> = [
@@ -26,7 +24,7 @@ export class AppComponent {
     new Wishlist(2, 'Learn React', true),
     new Wishlist(3, 'Learn Vue', true),
   ];
-
+  
   get visibleWishlists(): Wishlist[] {
     let value = this.selectedFilter;
     if (value == '1') {
@@ -37,9 +35,8 @@ export class AppComponent {
       return  this.wishlists.filter(wishlist => !wishlist.isCompleted);
     }
   }
-
-  addNewWish() {
-    this.wishlists.push(new Wishlist(4, this.newWishlist.text, false));
-    this.newWishlist.text = '';
+  
+  addNewWish(newWish: Wishlist) {
+    this.wishlists.push(newWish);
   }
 }

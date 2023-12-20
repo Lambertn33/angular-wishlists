@@ -11,18 +11,7 @@
           <option value="3">Uncompleted</option>
         </select>
       </div>
-      <div class="mb-3">
-        <label for="newWishlist" class="form-label">Wishlist</label>
-        <input
-          [(ngModel)]="newWishlist.text"
-          name="wishlistText"
-          type="text"
-          class="form-control"
-          id="newWishlist"
-        />
-        <br>
-      </div>
-      <button (click)="$event.preventDefault(); addNewWish()" class="btn btn-primary">Submit</button>
+      <add-wish (addWish)="addNewWish($event)"></add-wish>
     </div>
   </div>
   <wish-list [wishlists]="visibleWishlists"></wish-list>

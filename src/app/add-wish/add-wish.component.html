@@ -1,0 +1,14 @@
+<div class="mb-3">
+  <label for="newWishlist" class="form-label">Wishlist</label>
+  <input
+    [(ngModel)]="newWishlist.text"
+    name="wishlistText"
+    type="text"
+    class="form-control"
+    id="newWishlist"
+  />
+  <br />
+</div>
+<button (click)="$event.preventDefault(); addNewWish()" class="btn btn-primary">
+  Submit
+</button>
