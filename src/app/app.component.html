@@ -3,6 +3,22 @@
     <h2 class="text-center">{{ title }}</h2>
   </div>
   <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="mb-3">
+        <label for="newWishlist" class="form-label">Wishlist</label>
+        <input
+          [(ngModel)]="newWishlist.text"
+          name="wishlistText"
+          type="text"
+          class="form-control"
+          id="newWishlist"
+        />
+        <br>
+        <button (click)="$event.preventDefault(); addNewWish()" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-6 offset-md-3">
       <ul class="list-group" *ngIf="wishlists.length; else emptyList">
         <li class="list-group-item" *ngFor="let wishlist of wishlists">
@@ -12,6 +28,7 @@
               type="checkbox"
               [id]="wishlist.id"
               [checked]="wishlist.isCompleted"
+              (click)="toggleWishlist(wishlist)"
             />
             <label class="form-check-label" [for]="wishlist.id">
               {{ wishlist.text }}
