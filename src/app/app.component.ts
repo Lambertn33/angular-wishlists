@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { Wishlist } from '../models/Wishlist';
 import { FormsModule } from '@angular/forms';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FormsModule],
+  imports: [CommonModule, RouterOutlet, FormsModule, WishListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -35,11 +36,6 @@ export class AppComponent {
     } else {
       return  this.wishlists.filter(wishlist => !wishlist.isCompleted);
     }
-  }
-
-  toggleWishlist(wishlist: Wishlist) {
-    wishlist.isCompleted = !wishlist.isCompleted;
-    console.log(wishlist);
   }
 
   addNewWish() {

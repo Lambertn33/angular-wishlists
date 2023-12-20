@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+      <ul class="list-group" *ngIf="wishlists.length; else emptyList">
+        <li class="list-group-item" *ngFor="let wishlist of wishlists">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [id]="wishlist.id"
+              [checked]="wishlist.isCompleted"
+              (click)="toggleWishlist(wishlist)"
+            />
+            <label class="form-check-label" [for]="wishlist.id">
+              {{ wishlist.text }}
+            </label>
+          </div>
+        </li>
+      </ul>
+      <ng-template #emptyList>
+        <p>No Wishlists available</p>
+      </ng-template>
+    </div>
+  </div>
